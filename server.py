@@ -3,7 +3,7 @@ import http.server
 class RequestHandler(http.server.BaseHTTPRequestHandler):
     '''Returning a fixed page to handle HTTP requests'''
     
-    Page = f'''\
+    Page = '''\
         <html>
         <body>
         <table>
@@ -37,9 +37,9 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
     def send_page(self, page):
         self.send_response(200)
         self.send_header("Content-Type", "text/html")
-        self.send_header("Content-Length", str(len(self.Page)))
+        self.send_header("Content-Length", str(len(page)))
         self.end_headers()
-        self.wfile.write(bytes(self.Page, 'utf-8'))
+        self.wfile.write(bytes(page, 'utf-8'))
 
 if __name__ == '__main__':
     serverAddress = ('', 7000)
